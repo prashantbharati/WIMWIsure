@@ -5,7 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 // import postRoutes from "./routes/posts.js";
-// import userRouter from "./routes/user.js";
+import userRouter from "./routes/user.js";
 
 const app = express();
 dotenv.config();
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 // app.use("/posts", postRoutes); // Every route inside postroutes is gonna start with /posts...localhost5000/posts
-// app.use("/user", userRouter);
+app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello to celebrations api");
