@@ -51,8 +51,8 @@ export const Auth = () => {
       const { data } = await signIn(formData);
       console.log(data, "auth front signin");
       // dispatch({ type: AUTH, data });
-
-      navigate("/");
+      localStorage.setItem("profile", JSON.stringify({ data }));
+      navigate("/next");
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +64,8 @@ export const Auth = () => {
 
       // dispatch({ type: AUTH, data });
       console.log(data, "signup");
-      navigate("/");
+      localStorage.setItem("profile", JSON.stringify({ data }));
+      navigate("/next");
     } catch (error) {
       console.log(error);
     }
