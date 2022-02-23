@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDom from "react-dom";
-import App from "./App";
+import Auth from "./components/Auth/Auth";
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<Auth />, document.getElementById("root"));
