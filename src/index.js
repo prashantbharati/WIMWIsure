@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import Auth from "./components/Auth/Auth";
 import { BasicTable } from "./table";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
 ReactDom.render(
   <BrowserRouter>
     <Routes>
