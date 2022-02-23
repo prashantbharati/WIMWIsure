@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,9 +13,19 @@ const API = axios.create({
   baseURL: "http://jsonplaceholder.typicode.com/users",
 });
 
-export default function BasicTable() {
-  let data1 = API.get("/");
+export const BasicTable = () => {
+  const [data1, setdata1] = useState([]);
+
+  const setdata2 = async () => {
+    const data2 = await API.get("/");
+    setdata1(data2.data);
+  };
+
   console.log(data1, "LOL");
+  useEffect(() => {
+    setdata2();
+  }, []);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -35,20 +46,36 @@ export default function BasicTable() {
             >
               Email&nbsp;(g)
             </TableCell>
+            <TableCell
+              align="right"
+              style={{ fontWeight: "bold", fontSize: "25px" }}
+            >
+              Phone&nbsp;(g)
+            </TableCell>
+            <TableCell
+              align="right"
+              style={{ fontWeight: "bold", fontSize: "25px" }}
+            >
+              Website&nbsp;(g)
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data1.map((row) => (
-            <TableRow>
+            <TableRow key={row.id}>
               <TableCell component="th" scope="row">
-                {row.fullname}
+                {row.name}
               </TableCell>
               <TableCell align="right">{row.username}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
+              {/* <TableCell align="right">{row.address}</TableCell> */}
+              {/* <TableCell align="right">{row.company}</TableCell> */}
+              <TableCell align="right">{row.phone}</TableCell>
+              <TableCell align="right">{row.website}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
